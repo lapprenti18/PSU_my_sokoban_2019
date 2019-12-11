@@ -103,7 +103,7 @@ void    check_o(char **tab, int **tab_o, player_s *player)
     }
 }
 
-int    check_win(char **tab, int **tab_o, player_s *player)
+int    check_win(char **tab, int **tab_o, player_s *player, int test)
 {
     int a = 0;
 
@@ -113,7 +113,7 @@ int    check_win(char **tab, int **tab_o, player_s *player)
     }
     if (a == player->nb_o)
         return (1);
-    return (0);
+    return (test);
 }
 
 int    check_x_blocked(char **tab, int i, int a)
@@ -129,7 +129,7 @@ int    check_x_blocked(char **tab, int i, int a)
     return (0);
 }
 
-int    check_loose(char **tab, int **tab_o, player_s *player)
+int    check_loose(char **tab, int **tab_o, player_s *player, int test)
 {
     int a = 0;
     int h = 0;
@@ -143,7 +143,7 @@ int    check_loose(char **tab, int **tab_o, player_s *player)
     }
     if (h == player->nb_o)
         return (2);
-    return (0);
+    return (test);
 }
 
 char    **reset_map(char **av)
@@ -172,8 +172,8 @@ int    loop(char **tab, int **o_pos, char **av)
             tab = reset_map(av);
         player_pos(&player, tab);
         move_p(player, tab, b);
-        test = check_win(tab, o_pos, &player);
-        test = check_loose(tab, o_pos, &player);
+        test = check_loose(tab, o_pos, &player, test);
+        test = check_win(tab, o_pos, &player, test);
         check_o(tab, o_pos, &player);
         if (test == 1 || test == 2)
             break;
@@ -213,7 +213,7 @@ int main (int ac, char **av)
     int win;
 
     win = loop(tab, o_pos, av);
-    if (win = 2)
+    if (win == 2)
         return (1);
     return (0);
 }
