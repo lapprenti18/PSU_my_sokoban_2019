@@ -205,13 +205,77 @@ int **tab_o(char **tab)
     return (tab_o);
 }
 
+int    error2(int ac, char **av, char *map)
+{
+    int p = 0;
+    int x;
+    int o;
+
+    for (int a = 0; map[a]; a += 1)
+        if (map[a] != '#' && map[a] != 'P' && map[a] != 'X' && map[a] != 'O' && map[a] != ' ' && map[a] != '\n')
+            return (84);
+    for (int a = 0; map[a]; a += 1)
+        if (map[a] == 'P')
+            p += 1;
+    for (int a = 0; map[a]; a += 1){
+        if (map[a] == 'X')
+            x += 1;
+        if (map[a] == 'O')
+            o += 1;
+    }
+    if (p != 1 || o == 0 || x == 0 || o > x)
+        return (84);
+    return (0);
+}
+
+int    error(int ac, char **av, char *map)
+{
+    int fd = open(av[1], O_RDONLY);
+    struct stat size_buff;
+    char *buffer[32000];
+    int c;
+    int temp;
+
+    stat(av[1], &size_buff);
+    if (fd == -1 || size_buff.st_size == 0 || ac != 2)
+        return 84;
+    c = read(fd, buffer, size_buff.st_size);
+    if (c == -1)
+        return (84);
+    return(0);
+}
+
+void    man(void)
+{
+    char *text = "USAGE\n\
+\t./my_sokoban map\n\
+DESCRIPTION\n\
+\tmap  file representing the warehouse map, containing ‘#’ for walls,\n\
+\t\t‘P’ for the player, ‘X’ for boxes and ‘O’ for storage locations.\n";
+
+    write(1, text, 188);
+}
+
 int main (int ac, char **av)
 {
-    char *map = fill(av);
-    char **tab = my_str_to_word_array(map);
-    int **o_pos = tab_o(tab);
+    char *map;
+    char **tab;
+    int **o_pos;
     int win;
+    int err = error(ac, av, map);
 
+    if (ac == 2 && av[1][0] == '-' && av[1][1] == 'h' && av[1][2] == '\0') {
+        man();
+        return (0);
+    }
+    if (err == 84)
+        return (84);
+    map = fill(av);
+    err = error2(ac, av, map);
+    if (err == 84)
+        return (84);
+    tab = my_str_to_word_array(map);
+    o_pos = tab_o(tab);
     win = loop(tab, o_pos, av);
     if (win == 2)
         return (1);
