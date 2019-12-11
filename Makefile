@@ -8,6 +8,11 @@
 SRC	=	main.c	\
 		fill.c	\
 		my_str_to_word_array.c	\
+		key.c	\
+		player_move.c	\
+		check_event.c	\
+		before_start_loop.c	\
+		win.c	\
 
 NAME	=	my_sokoban
 
