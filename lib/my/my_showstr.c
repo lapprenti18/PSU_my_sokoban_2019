@@ -17,21 +17,21 @@ int    my_putchar10 (char c)
 int    affichage (int b)
 {
     if (b < 10)
-        my_putchar(b);
+        my_putchar10(b);
     if (b == 10)
-        my_putchar('a');
+        my_putchar10('a');
     if (b == 11)
-        my_putchar('b');
+        my_putchar10('b');
     if (b == 12)
-        my_putchar('c');
+        my_putchar10('c');
     if (b == 13)
-        my_putchar('d');
+        my_putchar10('d');
     if (b == 14)
-        my_putchar('e');
+        my_putchar10('e');
     if (b == 15)
-        my_putchar('f');
+        my_putchar10('f');
     if (b == 16)
-        my_putchar('g');
+        my_putchar10('g');
 }
 
 int    my_showstr(char const *str)
@@ -41,16 +41,16 @@ int    my_showstr(char const *str)
 
     for (int a = 0; str[a] != '\0'; a++) {
         if (str[a] < ' ' || str[a] == 127) {
-            my_putchar('\\');
+            my_putchar10('\\');
             a = str[a] / 16;
             if (a == 0)
-                my_putchar('0');
-            my_putchar(a);
+                my_putchar10('0');
+            my_putchar10(a);
             b = str[a] %16;
             affichage(b);
         }
         if (str[a] >= ' ')
-        my_putchar(str[a]);
+        my_putchar10(str[a]);
     }
     return (0);
 }

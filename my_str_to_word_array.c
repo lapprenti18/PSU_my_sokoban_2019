@@ -11,7 +11,7 @@
 
 int    nb_word(char *str)
 {
-    int compteur = 1;
+    int compteur = 0;
 
     for (int a = 0; str[a] != '\0'; a = a + 1) {
         if (str[a] == '\n')
