@@ -78,6 +78,7 @@ int    loop(char **tab, int **o_pos, char **av)
             tab = reset_map(av);
         player_pos(&player, tab);
         move_p(player, tab, b);
+        check_o(tab, o_pos, &player);
     }
     endwin();
     return (test);
