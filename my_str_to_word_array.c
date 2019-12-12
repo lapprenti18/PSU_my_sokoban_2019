@@ -35,8 +35,10 @@ char    **fill_tab(char **tab, char *str, int t)
     for (int c = 0; c < t ; c++)
     {
         x = 0;
-        for (; !is_alpha(str[e]); i += 1)
+        if (!is_alpha(str[e])) {
             e += 1;
+            i += 1;
+        }
         for (; is_alpha(str[e]); e += 1);
         tab[c] = malloc(sizeof(char) * (e - i + 1));
         for (; i < e; i += 1) {
