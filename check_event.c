@@ -62,7 +62,7 @@ int    loop(char **tab, int **o_pos, char **av)
 {
     int b = 0;
     player_s player;
-    int test;
+    int test = 0;
 
     player.nb_o = nb_of_o(tab);
     before_loop();

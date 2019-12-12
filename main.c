@@ -33,8 +33,8 @@ int **tab_o(char **tab)
 int    error2(int ac, char **av, char *map)
 {
     int p = 0;
-    int x;
-    int o;
+    int x = 0;
+    int o = 0;
 
     for (int a = 0; map[a]; a += 1)
         if (map[a] != '#' && map[a] != 'P' && map[a] != 'X' && map[a] != 'O' \
