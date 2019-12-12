@@ -68,16 +68,16 @@ int    loop(char **tab, int **o_pos, char **av)
     before_loop();
     while (1) {
         start_loop(tab);
-        b = getch();
-        if (b == 32)
-            tab = reset_map(av);
-        player_pos(&player, tab);
-        move_p(player, tab, b);
         test = check_loose(tab, o_pos, &player, test);
         test = check_win(tab, o_pos, &player, test);
         check_o(tab, o_pos, &player);
         if (test == 1 || test == 2)
             break;
+        b = getch();
+        if (b == 32)
+            tab = reset_map(av);
+        player_pos(&player, tab);
+        move_p(player, tab, b);
     }
     endwin();
     return (test);
