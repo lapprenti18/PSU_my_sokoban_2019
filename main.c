@@ -73,13 +73,13 @@ int    error(int ac, char **av, char *map)
 
 void    man(void)
 {
-    char *text = "USAGE\n\
-\t./my_sokoban map\n\
-DESCRIPTION\n\
-\tmap  file representing the warehouse map, containing ‘#’ for walls,\n\
-\t\t‘P’ for the player, ‘X’ for boxes and ‘O’ for storage locations.\n";
-
-    write(1, text, 188);
+    write(1, "USAGE\n", 6);
+    write(1, "\t./my_sokoban map\n", 18);
+    write(1, "DESCRIPTION\n", 12);
+    write(1, "\tmap  file representing the warehouse ", 38);
+    write(1, "map, containing ‘#’ for walls,\n", 35);
+    write(1, "\t\t‘P’ for the player, ‘X’ for ", 30);
+    write(1, "boxes and ‘O’ for storage locations.\n", 41);
 }
 
 int    main (int ac, char **av)

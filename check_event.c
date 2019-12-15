@@ -68,8 +68,7 @@ int    loop(char **tab, int **o_pos, char **av)
     before_loop();
     while (1) {
         start_loop(tab);
-        test = check_loose(tab, o_pos, &player, test);
-        test = check_win(tab, o_pos, &player, test);
+        test = win_or_loose(tab, o_pos, test, &player);
         check_o(tab, o_pos, &player);
         if (test == 1 || test == 2)
             break;

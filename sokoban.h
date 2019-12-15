@@ -45,3 +45,5 @@ void    man(void);
 void    start_loop(char **tab);
 void    before_loop(void);
 int    win(char **tab, char *map, char **av);
+int    win_or_loose(char **tab, int **o_pos, int test, player_s *player);
+int    blocked(char **tab, int i, int a);

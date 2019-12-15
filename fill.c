@@ -24,3 +24,17 @@ char    *fill(char **av)
     close(fd);
     return (buffer);
 }
+
+int    win_or_loose(char **tab, int **o_pos, int test, player_s *player)
+{
+    test = check_loose(tab, o_pos, player, test);
+    test = check_win(tab, o_pos, player, test);
+    return (test);
+}
+
+int    blocked(char **tab, int i, int a)
+{
+    if (tab[i][a] == 'X')
+        return (check_x_blocked(tab, i, a));
+    return (0);
+}
